@@ -1,0 +1,775 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint8",
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "updatedBy",
+				"type": "address"
+			}
+		],
+		"name": "BloodStatusUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
+		"name": "BloodTransferred",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "hospital",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "usagePurpose",
+				"type": "string"
+			}
+		],
+		"name": "BloodUsed",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "donor",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "points",
+				"type": "uint256"
+			}
+		],
+		"name": "CreditPointsMinted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "donor",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "points",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			}
+		],
+		"name": "DonorRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "hospital",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "authorized",
+				"type": "bool"
+			}
+		],
+		"name": "HospitalUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "institution",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "authorized",
+				"type": "bool"
+			}
+		],
+		"name": "InstitutionUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "donor",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "authorized",
+				"type": "address"
+			}
+		],
+		"name": "QueryAuthorized",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "hospital",
+				"type": "address"
+			}
+		],
+		"name": "authorizeHospital",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "institution",
+				"type": "address"
+			}
+		],
+		"name": "authorizeInstitution",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "authorizedAddress",
+				"type": "address"
+			}
+		],
+		"name": "authorizeQuery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "authorizedHospitals",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "authorizedInstitutions",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "patientInfo",
+				"type": "string"
+			}
+		],
+		"name": "createPatientInfoHash",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getBloodCount",
+		"outputs": [
+			{
+				"internalType": "uint64",
+				"name": "",
+				"type": "uint64"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			}
+		],
+		"name": "getBloodInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint64",
+						"name": "id",
+						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "donor",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "donationType",
+						"type": "string"
+					},
+					{
+						"internalType": "uint16",
+						"name": "amount",
+						"type": "uint16"
+					},
+					{
+						"internalType": "uint8",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint32",
+						"name": "donationTime",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "expiryDate",
+						"type": "uint32"
+					},
+					{
+						"internalType": "address",
+						"name": "location",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "hospital",
+						"type": "address"
+					},
+					{
+						"internalType": "uint32",
+						"name": "usedTime",
+						"type": "uint32"
+					},
+					{
+						"internalType": "string",
+						"name": "purpose",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "patientHash",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct BloodDonationCreditSystem.BloodInfo",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			}
+		],
+		"name": "getBloodInfoBasic",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint32",
+				"name": "expiryDate",
+				"type": "uint32"
+			},
+			{
+				"internalType": "address",
+				"name": "location",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "donationType",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			}
+		],
+		"name": "getBloodTransfers",
+		"outputs": [
+			{
+				"internalType": "uint32[]",
+				"name": "timestamps",
+				"type": "uint32[]"
+			},
+			{
+				"internalType": "uint8[]",
+				"name": "fromStatuses",
+				"type": "uint8[]"
+			},
+			{
+				"internalType": "uint8[]",
+				"name": "toStatuses",
+				"type": "uint8[]"
+			},
+			{
+				"internalType": "address[]",
+				"name": "transferBys",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			}
+		],
+		"name": "getBloodUsageInfo",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "hospital",
+				"type": "address"
+			},
+			{
+				"internalType": "uint32",
+				"name": "usedTime",
+				"type": "uint32"
+			},
+			{
+				"internalType": "string",
+				"name": "purpose",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "patientHash",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "getDonorBloodIds",
+		"outputs": [
+			{
+				"internalType": "uint64[]",
+				"name": "",
+				"type": "uint64[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "getDonorInfo",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint32",
+				"name": "",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint32",
+				"name": "",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint32",
+				"name": "",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint16",
+				"name": "",
+				"type": "uint16"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "status",
+				"type": "uint8"
+			}
+		],
+		"name": "getStatusName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "getTotalPoints",
+		"outputs": [
+			{
+				"internalType": "uint32",
+				"name": "",
+				"type": "uint32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			},
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "isAuthorizedForBlood",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "queryAuthorizations",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "queryCreditLevel",
+		"outputs": [
+			{
+				"internalType": "uint32",
+				"name": "points",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint8",
+				"name": "level",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "patientInfoHash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "usagePurpose",
+				"type": "string"
+			}
+		],
+		"name": "recordBloodUsage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "donationType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint16",
+				"name": "bloodAmount",
+				"type": "uint16"
+			}
+		],
+		"name": "registerDonorAndBlood",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "hospital",
+				"type": "address"
+			}
+		],
+		"name": "revokeHospital",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "institution",
+				"type": "address"
+			}
+		],
+		"name": "revokeInstitution",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "authorizedAddress",
+				"type": "address"
+			}
+		],
+		"name": "revokeQuery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "bloodId",
+				"type": "uint64"
+			},
+			{
+				"internalType": "uint8",
+				"name": "newStatus",
+				"type": "uint8"
+			}
+		],
+		"name": "updateBloodStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
